@@ -51,4 +51,15 @@ client.ws(
 }
 ```
 
+WebSocketSession does not start a ping-pong exchange with the server by default. To enable health check through ping-pong messages, we provide an initial configuration while installing the feature
+
+```
+val client = HttpClient {
+    install(WebSockets) {
+        pingIntervalMillis = 15000L // Period of each ping message. 
+        timeoutMillis = 15000L // Timeout to receive a pong message.
+    }
+}
+```
+
 For more information about the WebSocketSession, check the [WebSocketSession page](/servers/features/websockets.html#WebSocketSession) and the [API reference](https://api.ktor.io/{{ site.ktor_version }}/io.ktor.client.features.websocket/).
